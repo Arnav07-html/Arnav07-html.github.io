@@ -1,128 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Arnav Anil Pangavhane - Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xrnxv</title>
 
 <style>
-:root{--accent:#00ffcc;--muted:#8a8f94}
-html,body{margin:0;height:100%;background:black;color:var(--accent);font-family:monospace;overflow-x:hidden}
-.matrix{position:fixed;inset:0;z-index:0;opacity:0.3}
-.wrap{position:relative;z-index:1;max-width:900px;margin:40px auto;padding:20px;background:rgba(0,0,0,0.3);border-radius:10px;border:1px solid rgba(0,255,204,0.2)}
-h1{margin:0}
-a{color:var(--accent)}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* Access Page */
+#accessPage {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 300px;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background: #4facfe;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2f80ed;
+}
+
+/* Main Website */
+#mainSite {
+  display: none;
+  text-align: center;
+  padding: 40px;
+  color: white;
+}
 </style>
 </head>
 
 <body>
 
-<!-- ACCESS SCREEN -->
-<div id="accessScreen" style="position:fixed;inset:0;background:black;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;">
-<h1 id="typingText"></h1>
-
-<input id="username" placeholder="Enter Your Name" style="padding:10px;margin:10px;background:black;border:1px solid #00ffcc;color:#00ffcc;">
-<input id="relation" placeholder="Relation with XRNXV" style="padding:10px;margin:10px;background:black;border:1px solid #00ffcc;color:#00ffcc;">
-
-<button onclick="enterSite()" style="padding:10px 20px;background:#00ffcc;border:none;color:black;font-weight:bold;cursor:pointer;">
-ACCESS
-</button>
+<!-- ACCESS PAGE -->
+<div id="accessPage">
+  <div class="box">
+    <h2>Enter Website</h2>
+    <input type="text" id="name" placeholder="Enter your Name">
+    <input type="text" id="relation" placeholder="Relation">
+    <br>
+    <button onclick="enterSite()">Enter</button>
+    <p id="error" style="color:red;"></p>
+  </div>
 </div>
 
-<canvas id="matrixCanvas" class="matrix"></canvas>
+<!-- MAIN WEBSITE -->
+<div id="mainSite">
+  <h1>xrnxv</h1>
+  <p id="welcomeText"></p>
 
-<div class="wrap">
+  <h3>Welcome to my website 🎉</h3>
+  <p>This is my personal page.</p>
 
-<h1>Arnav Anil Pangavhane</h1>
-<div style="letter-spacing:3px;margin-bottom:10px;">XRNXV</div>
-
-<p>Web Developer & Cybersecurity Student</p>
-
-<p>
-<a href="https://instagram.com/itz_xrnxv_179" target="_blank">Instagram</a> |
-<a href="https://snapchat.com/add/xrnxv_179" target="_blank">Snapchat</a>
-</p>
-
-<div id="visitorCount">Visitors: Loading...</div>
+  <h3>My Social Links</h3>
+  <p>
+    Instagram: 
+    <a href="https://instagram.com/YOUR_ID" target="_blank">Open Instagram</a>
+    <br><br>
+    Snapchat: 
+    <a href="https://snapchat.com/add/YOUR_ID" target="_blank">Open Snapchat</a>
+  </p>
 
 </div>
 
 <script>
-/* MATRIX BACKGROUND */
-const canvas = document.getElementById("matrixCanvas");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const letters = "01";
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = Array(Math.floor(columns)).fill(1);
+function enterSite() {
+  let name = document.getElementById("name").value.trim();
+  let relation = document.getElementById("relation").value.trim();
 
-function drawMatrix(){
-ctx.fillStyle="rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="#00ffcc";
-ctx.font=fontSize+"px monospace";
-for(let i=0;i<drops.length;i++){
-const text=letters[Math.floor(Math.random()*letters.length)];
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-if(drops[i]*fontSize>canvas.height&&Math.random()>0.975)drops[i]=0;
-drops[i]++;
-}}
-setInterval(drawMatrix,50);
+  if(name === "" || relation === "") {
+    document.getElementById("error").innerText = "Please enter Name and Relation";
+    return;
+  }
 
-/* ACCESS FUNCTION */
-function enterSite(){
-var name=document.getElementById("username").value;
-var relation=document.getElementById("relation").value;
+  document.getElementById("accessPage").style.display = "none";
+  document.getElementById("mainSite").style.display = "block";
 
-if(name===""||relation===""){
-alert("Enter details first");
-return;
+  document.getElementById("welcomeText").innerText =
+    "Hello " + name + " (" + relation + "), Welcome!";
 }
-
-document.getElementById("accessScreen").style.display="none";
-
-let msg=document.createElement("div");
-msg.style.position="fixed";
-msg.style.top="10px";
-msg.style.right="10px";
-msg.style.color="#00ffcc";
-msg.innerHTML="ACCESS GRANTED → "+name+" ("+relation+")";
-document.body.appendChild(msg);
-
-/* Flying name */
-let fly=document.createElement("div");
-fly.innerHTML=name;
-fly.style.position="fixed";
-fly.style.left="50%";
-fly.style.top="50%";
-fly.style.transform="translate(-50%,-50%)";
-fly.style.color="#00ffcc";
-fly.style.fontSize="24px";
-fly.style.transition="all 1.5s ease-out";
-document.body.appendChild(fly);
-setTimeout(()=>{fly.style.top="10%";fly.style.opacity="0"},50);
-setTimeout(()=>{fly.remove()},1600);
-
-/* Visitor counter */
-let count=localStorage.getItem("visitCount")||0;
-count++;
-localStorage.setItem("visitCount",count);
-document.getElementById("visitorCount").innerText="Visitors: "+count;
-}
-
-/* Typing Effect */
-const text="XRNXV SECURE ACCESS";
-let i=0;
-function typeEffect(){
-if(i<text.length){
-document.getElementById("typingText").innerHTML+=text.charAt(i);
-i++;
-setTimeout(typeEffect,60);
-}}
-typeEffect();
 </script>
 
 </body>
+</html>
+
 </html>
