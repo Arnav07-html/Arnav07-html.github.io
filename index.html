@@ -40,6 +40,17 @@
 
 </head>
 <body>
+<!-- ACCESS SCREEN -->
+<div id="accessScreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:black;color:#00ffcc;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:9999;font-family:monospace;">
+  <h1>XRNXV SECURE ACCESS</h1>
+
+  <input id="username" placeholder="Enter Your Name" style="padding:10px;margin:10px;background:black;border:1px solid #00ffcc;color:#00ffcc;">
+  <input id="relation" placeholder="Relation with XRNXV" style="padding:10px;margin:10px;background:black;border:1px solid #00ffcc;color:#00ffcc;">
+
+  <button onclick="enterSite()" style="padding:10px 20px;background:#00ffcc;border:none;color:black;font-weight:bold;cursor:pointer;">
+    ACCESS
+  </button>
+</div>
   <canvas class="matrix" id="matrixCanvas"></canvas>
 
   <main class="wrap" id="top">
@@ -158,6 +169,29 @@
       window.location.href = `mailto:${to}?subject=${encodeURIComponent('Website contact from ' + decodeURIComponent(name))}&body=${msg}`;
     }
   </script>
+<script>
+function enterSite() {
+  var name = document.getElementById("username").value;
+  var relation = document.getElementById("relation").value;
+
+  if(name === "" || relation === "") {
+    alert("Enter details first");
+    return;
+  }
+
+  document.getElementById("accessScreen").style.display = "none";
+
+  var msg = document.createElement("div");
+  msg.style.position = "fixed";
+  msg.style.top = "10px";
+  msg.style.right = "10px";
+  msg.style.color = "#00ffcc";
+  msg.style.fontFamily = "monospace";
+  msg.innerHTML = "ACCESS GRANTED → " + name + " (" + relation + ")";
+  document.body.appendChild(msg);
+}
+</script>
 </body>
 </html>
+
 
