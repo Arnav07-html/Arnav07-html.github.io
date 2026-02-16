@@ -39,10 +39,34 @@
 </script>
 
 </head>
+  <script>
+function enterSite() {
+    var code = document.getElementById("accessInput").value;
+
+    if(code === "XRNXV") {
+        document.getElementById("accessPage").style.display = "none";
+    } else {
+        alert("Wrong Access Code");
+    }
+}
+</script>
 <body>
+  <div id="accessPage" style="position:fixed;top:0;left:0;width:100%;height:100%;background:black;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;">
+    
+    <h1 style="color:#00ffcc;">PRIVATE ACCESS</h1>
+    
+    <input id="accessInput" type="password" placeholder="Enter Access Code"
+    style="padding:10px;border:none;border-radius:5px;margin-top:10px;">
+
+    <button onclick="enterSite()" 
+    style="margin-top:15px;padding:10px 20px;background:#00ffcc;border:none;border-radius:5px;cursor:pointer;">
+    ENTER
+    </button>
+
+</div>
 <!-- ACCESS SCREEN -->
 <div id="accessScreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:black;color:#00ffcc;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:9999;font-family:monospace;">
-  <h1>XRNXV SECURE ACCESS</h1>
+  <h1 id="typingText"></h1>
 
   <input id="username" placeholder="Enter Your Name" style="padding:10px;margin:10px;background:black;border:1px solid #00ffcc;color:#00ffcc;">
   <input id="relation" placeholder="Relation with XRNXV" style="padding:10px;margin:10px;background:black;border:1px solid #00ffcc;color:#00ffcc;">
@@ -58,6 +82,7 @@
       <div class="avatar">A⚡P</div>
       <div style="flex:1">
         <h1>Arnav Anil Pangavhane</h1>
+<div style="color:#00ffcc;font-size:14px;letter-spacing:2px;">XRNXV</div>
         <div class="title-meta">Web Developer and Cyber Security Student</div>
         <div class="lead">Web dev + cybersecurity student — building, learning, improving.</div>
         <nav>
@@ -79,11 +104,13 @@
 
         <aside>
           <h3>Quick links</h3>
-          <p class="lead contact">
-            <a class="link" href="https://github.com/" target="_blank">GitHub</a><br/>
-            <a class="link" href="https://linkedin.com/" target="_blank">LinkedIn</a><br/>
-            <a class="link" href="https://twitter.com/" target="_blank">Twitter</a>
-          </p>
+<p class="lead contact">
+  <a class="link" href="https://github.com/" target="_blank">GitHub</a><br/>
+  <a class="link" href="https://linkedin.com/" target="_blank">LinkedIn</a><br/>
+  <a class="link" href="https://twitter.com/" target="_blank">Twitter</a><br/>
+  <a class="link" href="https://instagram.com/itz_xrnxv_179" target="_blank">Instagram</a><br/>
+  <a class="link" href="https://snapchat.com/add/xrnxv_179" target="_blank">Snapchat</a>
+</p>
         </aside>
       </div>
     </section>
@@ -124,7 +151,9 @@
         </aside>
       </div>
     </section>
-
+<div id="visitorCount" style="color:#00ffcc;font-family:monospace;margin-top:10px;">
+Visitors: Loading...
+</div>
     <footer>
       <div>© 2025 Arnav Anil Pangavhane</div>
       <div>Made with &lt;code&gt; and ☕</div>
@@ -189,9 +218,39 @@ function enterSite() {
   msg.style.fontFamily = "monospace";
   msg.innerHTML = "ACCESS GRANTED → " + name + " (" + relation + ")";
   document.body.appendChild(msg);
+  let fly = document.createElement("div");
+fly.innerHTML = name;
+fly.style.position="fixed";
+fly.style.left="50%";
+fly.style.top="50%";
+fly.style.color="#00ffcc";
+fly.style.fontSize="22px";
+fly.style.fontFamily="monospace";
+fly.style.animation="flyUp 2s ease-out forwards";
+document.body.appendChild(fly);
+
+</script>
+  <script>
+/* Typing Effect */
+const text = "XRNXV SECURE ACCESS";
+let i = 0;
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("typingText").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 60);
+  }
 }
+typeEffect();
+</script>
+  <script>
+let count = localStorage.getItem("visitCount") || 0;
+count++;
+localStorage.setItem("visitCount", count);
+document.getElementById("visitorCount").innerText = "Visitors: " + count;
 </script>
 </body>
 </html>
+
 
 
