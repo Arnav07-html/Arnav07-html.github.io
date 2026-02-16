@@ -41,13 +41,23 @@
 </head>
   <script>
 function enterSite() {
-    var code = document.getElementById("accessInput").value;
+   <script>
+function enterSite() {
+  var name = document.getElementById("username").value;
+  var relation = document.getElementById("relation").value;
 
-    if(code === "XRNXV") {
-        document.getElementById("accessPage").style.display = "none";
-    } else {
-        alert("Wrong Access Code");
-    }
+  if (name === "" || relation === "") {
+    alert("Enter details first");
+    return;
+  }
+
+  // Save names (optional)
+  localStorage.setItem("xrnxv_user", name + " (" + relation + ")");
+
+  // Open your main website
+  window.location.href = "main.html";   // ⚠️ change if your main page name is different
+}
+</script>
 }
 </script>
 <body>
@@ -251,6 +261,7 @@ document.getElementById("visitorCount").innerText = "Visitors: " + count;
 </script>
 </body>
 </html>
+
 
 
 
